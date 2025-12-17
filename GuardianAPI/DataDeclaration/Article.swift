@@ -10,36 +10,36 @@ import Foundation
 
 // MARK: - Welcome
 struct GuardianResponse: Codable {
-    let response: ResponseDetails
+    var response: ResponseDetails
 }
 
 
 // MARK: - Response
 struct ResponseDetails: Codable {
-    let status     : String
-    let userTier   : String
-    let total      : Int
-    let pageCount  : Int?
-    let startIndex : Int
-    let pageSize   : Int
-    let currentPage: Int
-    let pages      : Int
-    let orderBy    : String
-    let results    : [Article]
+    var status     : String
+    var userTier   : String
+    var total      : Int
+    var pageCount  : Int?
+    var startIndex : Int
+    var pageSize   : Int
+    var currentPage: Int
+    var pages      : Int
+    var orderBy    : String
+    var results    : [Article]
 }
 
 
 // MARK: - Result
 struct Article: Codable, Identifiable, Hashable {
-    let id: String
-    let type: TypeEnum
-    let sectionID: String
-    let sectionName: String
-    let webPublicationDate: Date
-    let webTitle: String
-    let webURL: String
-    let apiURL: String
-    let isHosted: Bool
+    var id: String
+    var type: TypeEnum
+    var sectionID: String
+    var sectionName: String
+    var webPublicationDate: Date
+    var webTitle: String
+    var webURL: String
+    var apiURL: String
+    var isHosted: Bool
 //    let pillarID: PillarID
 //    let pillarName: PillarName
     
@@ -53,9 +53,20 @@ struct Article: Codable, Identifiable, Hashable {
         case webURL = "webUrl"
         case apiURL = "apiUrl"
         case isHosted
-//        case pillarID = "pillarId"
-//        case pillarName
+        //        case pillarID = "pillarId"
+        //        case pillarName
     }
+    
+    static let example = Article(
+        id: "This id the id",
+        type: .article,
+        sectionID: "This entry is the sectionID",
+        sectionName: "This is the SectionName",
+        webPublicationDate: Date(),
+        webTitle: "The webTitle is very important",
+        webURL: "This is the webURL",
+        apiURL: "This is the API url",
+        isHosted: true)
 }
 
 
@@ -72,6 +83,6 @@ struct Article: Codable, Identifiable, Hashable {
 
 
 enum TypeEnum: String, Codable {
-    case article = "article"
+    case article  = "article"
     case liveblog = "liveblog"
 }
