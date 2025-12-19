@@ -9,6 +9,7 @@ import SwiftUI
 
 
 struct LoadFailedView: View {
+    
     var error: (any Error)?
     var retry: () async -> Void
     

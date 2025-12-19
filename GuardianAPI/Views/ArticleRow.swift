@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct ArticleRow: View {
-    
-    var article: Article
-    
-    var body: some View {
-        NavigationLink(value: article) {
-            
-            HStack {
+//struct ArticleRow: View {
+//    
+//    var article: Article
+//    
+//    var body: some View {
+//        NavigationLink(value: article) {
+//            
+//            HStack {
 //                if let url = URL(string: article.urlToImage ?? "") {
 //                    ArticleImage(imageURL: url)
 //                        .frame(width: 80, height: 80)
@@ -22,15 +22,15 @@ struct ArticleRow: View {
 //                } else if let placeholder = URL(string: "https://via.placeholder.com/300") {
 //                    ArticleImage(imageURL: placeholder)
 //                }
-//                
-//                Text(article.title)
+                
+//                Text(article.sectionName)
 //                    .foregroundStyle(.black)
-            }
-        }
-    }
-}
-
-
-#Preview {
-    ArticleRow(article: .example)
-}
+//            }
+//        }
+//    }
+//}
+//
+//
+//#Preview {
+//    ArticleRow(article: .example)
+//}

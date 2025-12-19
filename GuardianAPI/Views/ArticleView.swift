@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct ArticleView: View {
+//struct ArticleView: View {
     
-    var article: Article
-    
-    var body: some View {
-        ScrollView {
+//    var article: Article
+//    
+//    var body: some View {
+//        ScrollView {
             
 //            if let url = URL(string: article.urlToImage ?? "") {
 //                ArticleImage(imageURL: url)
@@ -21,10 +21,10 @@ struct ArticleView: View {
 //            }
             
 //            VStack(alignment: .leading, spacing: 10) {
-//                Text(article.title)
+//                Text(article.webTitle)
 //                    .font(.title)
-//                
-//                Text(article.description ?? "Error: No description available.")
+                
+//                Text(article.sectionName ?? "Error: No description available.")
 //                    .font(.headline)
 //                
 //                Text(article.publishedAt)  // Date
@@ -33,16 +33,16 @@ struct ArticleView: View {
 //                Text(article.content ?? "Error: No description available.")
 //            }
 //            .padding(.horizontal)
-        }
+//        }
 //        .frame(maxWidth: 600)    //restrict iPad width
-//        .navigationTitle(Text(article.title))
+//        .navigationTitle(Text(article.webTitle))
 //        .navigationBarTitleDisplayMode(.inline)
-    }
-}
-
-
-
-#Preview {
-    ArticleView(article: .example)
-}
+//    }
+//}
+//
+//
+//
+//#Preview {
+//    ArticleView(article: .example)
+//}
 

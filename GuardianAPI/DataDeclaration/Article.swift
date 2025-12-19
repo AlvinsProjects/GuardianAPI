@@ -58,14 +58,14 @@ struct Article: Codable, Identifiable, Hashable {
     }
     
     static let example = Article(
-        id: "This id the id",
-        type: .article,
+        id: "This is the id",
+        type: TypeEnum.article,
         sectionID: "This entry is the sectionID",
         sectionName: "This is the SectionName",
         webPublicationDate: Date(),
         webTitle: "The webTitle is very important",
-        webURL: "This is the webURL",
-        apiURL: "This is the API url",
+        webURL: "https://hws.dev/img/logo.png",
+        apiURL: "https://hws.dev/img/logo.png",
         isHosted: true)
 }
 
