@@ -15,9 +15,11 @@ struct ArticleRow: View {
     
     var body: some View {
         List {
-            ForEach(vm.filteredArticles, id: \.id) { article in
+            // enumerated creates a tuple with the offset (index no) and the article
+            ForEach(vm.filteredArticles.enumerated(), id: \.offset) { offset, article in
                 VStack(alignment: .leading) {
                     HStack(spacing: 8) {
+                        // load and display the thumbnail
                         if let thumbURL = URL(string: article.fields.thumbnail) {
                             AsyncImage(url: thumbURL) { phase in
                                 switch phase {
@@ -38,15 +40,27 @@ struct ArticleRow: View {
                                 }
                             }
                         }
-                        Text(article.webTitle)
-                            .font(.headline)
+                        // Display list number and category (sectionName)
+                        VStack(alignment: .leading) {
+                            HStack {
+                                Text("\(offset + 1)")
+                                Text(article.sectionName)
+                            }
+                            .font(.footnote).fontWeight(.heavy)
+                            
+                            // Display the item title
+                            Text(article.webTitle)
+                                .font(.default).bold(true)
+                        }
                     }
                     HStack {
-                        Text(article.webPublicationDate, style: .date)
+                        // Date and time at the bottom left of each list item
+                        Text(article.webPublicationDate.formatted(date: .long, time: .shortened))
                             .font(.footnote).bold()
                         
                         Spacer()
                         
+                        // Link the selected item to the appropriate webURL
                         if let url = URL(string: article.webURL) {
                             Link("Read full article", destination: url)
                                 .font(.subheadline)
@@ -63,6 +77,10 @@ struct ArticleRow: View {
 //#Preview {
 //    ArticleRow(vm: vm)
 //}
+
+
+
+
 
 
 
