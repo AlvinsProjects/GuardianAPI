@@ -31,6 +31,7 @@ struct LoadFailedView: View {
 }
 
 
+
 #Preview {
     LoadFailedView(error: NSError(domain: "Take Home Test", code: 1, userInfo: nil)) {
         // do nothing

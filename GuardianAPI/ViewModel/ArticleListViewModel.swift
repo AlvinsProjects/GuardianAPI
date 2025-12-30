@@ -30,6 +30,7 @@ extension ContentView {
                 articles
             } else {
                 articles.filter {
+                    // localizedStandardContains search is locale-aware, case and diacritic insensitive.
                     $0.webTitle.localizedStandardContains(filterText) }
             }
         }
@@ -37,16 +38,42 @@ extension ContentView {
         
         func loadArticles() async {
             loadState = .loading
+            
+            // set up my API Key
+            let apiKey = "f9108003-c02d-4f9e-bfc4-3f501a618e6b"
+            
+            // set up base url
+            let baseUrl = "https://content.guardianapis.com/"
+            
+            //set up parameters
+            let searchKeyword = "Cricket%20OR%20Ashes"     //"Brexit%20OR%20(Theresa%20AND%20May)"
+            let dataFormat    = "json"
+            let section       = "sport"                    // News  Opinion  Sport Culture  Lifestyle
+            let fromDate      = "2025-12-01"
+            let toDate        = "2025-12-29"
+            let page          = 1
+            let pageSize      = 20
+            let orderBy       = "newest"
+            let productionOffice = "uk"
+            let lang          = "en"
+            
+            let apiUrlString = "\(baseUrl)search?q=\(searchKeyword)&format=\(dataFormat)&section=\(section)&from-date=\(fromDate)&to-date=\(toDate)&page=\(page)&page-size=\(pageSize)&order-by=\(orderBy)&production-office=\(productionOffice)&lang=\(lang)&show-fields=thumbnail&api-key=\(apiKey)"
+
+            
+//            let apiUrlString2 = "https://content.guardianapis.com/search?q=Cricket%20OR%20Ashes&format=json&section=sport&from-date=2025-12-01&to-date=2025-12-29&page=1&page-size=20&order-by=newest&production-office=uk&lang=en&show-fields=thumbnail,headline&api-key=f9108003-c02d-4f9e-bfc4-3f501a618e6b"
+            
+            //&show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL,isHosted
+            
+            
             do {
-                let url = URL(string: "https://content.guardianapis.com/search?page=3&q=news&api-key=f9108003-c02d-4f9e-bfc4-3f501a618e6b")!
+                let url = URL(string: apiUrlString)!
                 let session = URLSession(configuration: .ephemeral)
                 let (data, _) = try await session.data(from: url)
                 let decoder = JSONDecoder()
                 // If you switch publishedAt to Date in the future:
                 decoder.dateDecodingStrategy = .iso8601
-                
                 let decodedResponse = try decoder.decode(GuardianResponse.self, from: data)
-                articles = decodedResponse.response.results //.filter({ $0.sectionName != "Comment is closed" })
+                articles = decodedResponse.response.results
                 loadState = .loaded
             } catch {
                 print(error.localizedDescription)
@@ -56,6 +83,28 @@ extension ContentView {
         }
     }
 }
+
+
+
+/*
+ //MARK: THE FOLLOWING ARE 5 CATEGORIES AND THEIR SUB-HEADINGS AVAILABLE ON THE GUARDIAN
+ 
+ News     : UK,  US politics, World, Climate crisis, Middle East, Ukraine, US Immigration, Soccer, Business, Environment, Tech, Science, Newsletters, Wellness
+ 
+ Opinion  : The Guardian view, Columnists, Letters, Opinion videos, Cartoons,
+ 
+ Sport    : Football, Cricket, Rugby Union, Tennis, Cycling, F1, Boxing, Rugby League, Racing, US sports
+
+ Culture  : Film, Music, TV & Radio, Books, Art & design, Stage, Games, Classical
+ 
+ Lifestyle: The Filter, Fashion, Food, Recipes, Travel, Health & Fitness, Women, Men, Love & sex, Beauty, Home & garden
+
+*/
+
+
+
+
+
 
 
 

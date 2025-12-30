@@ -30,7 +30,7 @@ struct ResponseDetails: Codable {
 
 
 // MARK: - Result
-struct Article: Codable, Identifiable, Hashable {
+struct Article: Codable {
     var id: String
     var type: TypeEnum
     var sectionID: String
@@ -39,6 +39,7 @@ struct Article: Codable, Identifiable, Hashable {
     var webTitle: String
     var webURL: String
     var apiURL: String
+    let fields: Fields
     var isHosted: Bool
 //    let pillarID: PillarID
 //    let pillarName: PillarName
@@ -52,9 +53,10 @@ struct Article: Codable, Identifiable, Hashable {
         case webTitle
         case webURL = "webUrl"
         case apiURL = "apiUrl"
+        case fields
         case isHosted
-        //        case pillarID = "pillarId"
-        //        case pillarName
+//        case pillarID = "pillarId"
+//        case pillarName
     }
     
     static let example = Article(
@@ -66,7 +68,14 @@ struct Article: Codable, Identifiable, Hashable {
         webTitle: "The webTitle is very important",
         webURL: "https://hws.dev/img/logo.png",
         apiURL: "https://hws.dev/img/logo.png",
+        fields: Fields(thumbnail: "https://hws.dev/img/logo.png"),
         isHosted: true)
+}
+
+
+
+struct Fields: Codable {
+    let thumbnail: String // This holds the thumbnail URL
 }
 
 
@@ -85,4 +94,9 @@ struct Article: Codable, Identifiable, Hashable {
 enum TypeEnum: String, Codable {
     case article  = "article"
     case liveblog = "liveblog"
+}
+
+
+enum SectionID: String, Codable {
+    case sport = "sport"
 }
