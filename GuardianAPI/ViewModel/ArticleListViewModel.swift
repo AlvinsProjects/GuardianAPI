@@ -50,7 +50,7 @@ extension ContentView {
             let dataFormat    = "json"
             let section       = "sport"                    // News  Opinion  Sport Culture  Lifestyle
             let fromDate      = "2025-12-01"
-            let toDate        = "2025-12-29"
+            let toDate        = "2025-12-30"
             let page          = 1
             let pageSize      = 20
             let orderBy       = "newest"
@@ -60,11 +60,11 @@ extension ContentView {
             let apiUrlString = "\(baseUrl)search?q=\(searchKeyword)&format=\(dataFormat)&section=\(section)&from-date=\(fromDate)&to-date=\(toDate)&page=\(page)&page-size=\(pageSize)&order-by=\(orderBy)&production-office=\(productionOffice)&lang=\(lang)&show-fields=thumbnail&api-key=\(apiKey)"
 
             
-//            let apiUrlString2 = "https://content.guardianapis.com/search?q=Cricket%20OR%20Ashes&format=json&section=sport&from-date=2025-12-01&to-date=2025-12-29&page=1&page-size=20&order-by=newest&production-office=uk&lang=en&show-fields=thumbnail,headline&api-key=f9108003-c02d-4f9e-bfc4-3f501a618e6b"
+//            let apiUrlString2 = "https://content.guardianapis.com/search?q=Cricket%20OR%20Ashes&format=json&section=sport&from-date=2025-12-01&to-date=2025-12-29&page=1&page-size=20&order-by=newest&production-office=uk&lang=en&show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=f9108003-c02d-4f9e-bfc4-3f501a618e6b"
             
             //&show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL,isHosted
             
-            
+
             do {
                 let url = URL(string: apiUrlString)!
                 let session = URLSession(configuration: .ephemeral)

@@ -60,6 +60,11 @@ struct ArticleRow: View {
 }
 
 
+//#Preview {
+//    ArticleRow(vm: vm)
+//}
+
+
 
 
 //        NavigationLink(value: article) {
@@ -81,6 +86,4 @@ struct ArticleRow: View {
 //}
 
 
-//#Preview {
-//    ArticleRow(article: Article.example)
-//}
+

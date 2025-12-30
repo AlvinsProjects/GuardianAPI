@@ -20,7 +20,6 @@ struct ContentView: View {
                     
                 default:
                     ArticleRow(vm: vm)
-                    
                         .navigationTitle("Guardian News")
                         .refreshable {
                             await vm.loadArticles()
@@ -28,6 +27,7 @@ struct ContentView: View {
                         .searchable(text: $vm.filterText,
                                     placement: .automatic,
                                     prompt: "Filter articles")
+                    
                         .task {
                             await vm.loadArticles()
                         }

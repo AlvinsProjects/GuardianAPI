@@ -41,8 +41,8 @@ struct Article: Codable {
     var apiURL: String
     let fields: Fields
     var isHosted: Bool
-//    let pillarID: PillarID
-//    let pillarName: PillarName
+    let pillarID: String
+    let pillarName: String
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -55,8 +55,8 @@ struct Article: Codable {
         case apiURL = "apiUrl"
         case fields
         case isHosted
-//        case pillarID = "pillarId"
-//        case pillarName
+        case pillarID = "pillarId"
+        case pillarName
     }
     
     static let example = Article(
@@ -69,7 +69,9 @@ struct Article: Codable {
         webURL: "https://hws.dev/img/logo.png",
         apiURL: "https://hws.dev/img/logo.png",
         fields: Fields(thumbnail: "https://hws.dev/img/logo.png"),
-        isHosted: true)
+        isHosted: true,
+        pillarID: "pillarId",
+        pillarName: "")
 }
 
 
@@ -79,16 +81,16 @@ struct Fields: Codable {
 }
 
 
-//enum PillarID: String, Codable {
-//    case pillarArts = "pillar/arts"
-//    case pillarNews = "pillar/news"
-//}
+enum PillarID: String, Codable {
+    case pillarArts = "pillar/arts"
+    case pillarNews = "pillar/news"
+}
 
 
-//enum PillarName: String, Codable {
-//    case arts = "Arts"
-//    case news = "News"
-//}
+enum PillarName: String, Codable {
+    case arts = "Arts"
+    case news = "News"
+}
 
 
 enum TypeEnum: String, Codable {
