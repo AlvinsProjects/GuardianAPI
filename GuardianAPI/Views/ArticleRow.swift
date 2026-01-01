@@ -15,7 +15,7 @@ struct ArticleRow: View {
     
     var body: some View {
         List {
-            // enumerated creates a tuple with the offset (index no) and the article
+            // "enumerated" creates a tuple with the offset (index no) and the article
             ForEach(vm.filteredArticles.enumerated(), id: \.offset) { offset, article in
                 VStack(alignment: .leading) {
                     HStack(spacing: 8) {
@@ -42,31 +42,32 @@ struct ArticleRow: View {
                         }
                         // Display list number and category (sectionName)
                         VStack(alignment: .leading) {
-                            HStack {
-                                Text("\(offset + 1)")
-                                Text(article.sectionName)
-                            }
-                            .font(.footnote).fontWeight(.heavy)
+                            Text("\(offset + 1). \(article.sectionName)")
+                                .font(.footnote)
+                                .fontWeight(.heavy)
                             
                             // Display the item title
                             Text(article.webTitle)
-                                .font(.default).bold(true)
+                                .font(.headline)
+                                .fontWeight(.medium)
                         }
                     }
                     HStack {
                         // Date and time at the bottom left of each list item
-                        Text(article.webPublicationDate.formatted(date: .long, time: .shortened))
-                            .font(.footnote).bold()
+                        Text("\(article.webPublicationDate, style: .date):")
+                        Text("Age: \(article.webPublicationDate, style: .relative)")
+                            .foregroundStyle(.red)
                         
                         Spacer()
                         
                         // Link the selected item to the appropriate webURL
                         if let url = URL(string: article.webURL) {
-                            Link("Read full article", destination: url)
-                                .font(.subheadline)
-                                .foregroundStyle(.blue)
+                            Link("Read article", destination: url)
                         }
                     }
+                    .font(.footnote)
+                    .foregroundStyle(.blue)
+                    .bold(true)
                 }
             }
         }

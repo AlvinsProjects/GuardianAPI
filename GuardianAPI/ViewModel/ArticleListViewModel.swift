@@ -46,7 +46,7 @@ extension ContentView {
             let baseUrl = "https://content.guardianapis.com/"
             
             //set up parameters
-            let searchKeyword = "Cricket%20OR%20Ashes"
+            let searchKeyword = "news" //Cricket%20OR%20Ashes"
             let dataFormat    = "json"
             let section       = "sport"
             let fromDate      = "2025-12-01"
@@ -61,12 +61,10 @@ extension ContentView {
             let apiUrlString = "\(baseUrl)search?q=\(searchKeyword)&format=\(dataFormat)&section=\(section)&from-date=\(fromDate)&to-date=\(toDate)&page=\(page)&page-size=\(pageSize)&order-by=\(orderBy)&production-office=\(productionOffice)&lang=\(lang)&show-fields=thumbnail&api-key=\(apiKey)"
 
             // Search for the latest cricket (Ashes) news
-            let apiUrlString2 = "https://content.guardianapis.com/search?q=Cricket%20OR%20Ashes&format=json&section=sport&from-date=2025-12-01&to-date=2025-12-29&page=1&page-size=29&order-by=newest&production-office=uk&lang=en&show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=f9108003-c02d-4f9e-bfc4-3f501a618e6b"
+            let apiUrlString2 = "https://content.guardianapis.com/search?q=Cricket%20OR%20Ashes&format=json&section=sport&from-date=2025-12-01&to-date=2025-12-30&page=1&page-size=29&order-by=newest&production-office=uk&lang=en&show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=f9108003-c02d-4f9e-bfc4-3f501a618e6b"
             
             // Search for the latest news items - any subject
-            let apiUrlString3 = "https://content.guardianapis.com/search?q=news&format=json&page=1&page-size=29&order-by=newest&show-fields=thumbnail,headline,isHosted&api-key=f9108003-c02d-4f9e-bfc4-3f501a618e6b"
-            
-            // &show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL,isHosted
+            let apiUrlString3 = "https://content.guardianapis.com/search?q=news&format=json&page=1&page-size=29&order-by=newest&production-office=uk&lang=en&show-fields=thumbnail&api-key=f9108003-c02d-4f9e-bfc4-3f501a618e6b"
             
 
             do {
@@ -90,20 +88,20 @@ extension ContentView {
 
 
 
+
+//MARK: THE FOLLOWING ARE 5 CATEGORIES AND THEIR SUB-HEADINGS AVAILABLE ON THE GUARDIAN
 /*
- //MARK: THE FOLLOWING ARE 5 CATEGORIES AND THEIR SUB-HEADINGS AVAILABLE ON THE GUARDIAN
- 
  News     : UK,  US politics, World, Climate crisis, Middle East, Ukraine, US Immigration, Soccer, Business, Environment, Tech, Science, Newsletters, Wellness
  
  Opinion  : The Guardian view, Columnists, Letters, Opinion videos, Cartoons,
  
  Sport    : Football, Cricket, Rugby Union, Tennis, Cycling, F1, Boxing, Rugby League, Racing, US sports
-
+ 
  Culture  : Film, Music, TV & Radio, Books, Art & design, Stage, Games, Classical
  
  Lifestyle: The Filter, Fashion, Food, Recipes, Travel, Health & Fitness, Women, Men, Love & sex, Beauty, Home & garden
-
-*/
+ 
+ */
 
 
 
