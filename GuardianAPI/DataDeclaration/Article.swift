@@ -59,38 +59,41 @@ struct Article: Codable {
         case pillarName
     }
     
-    static let example = Article(
-        id: "This is the id",
-        type: TypeEnum.article,
-        sectionID: "This entry is the sectionID",
-        sectionName: "This is the SectionName",
-        webPublicationDate: Date(),
-        webTitle: "The webTitle is very important",
-        webURL: "https://hws.dev/img/logo.png",
-        apiURL: "https://hws.dev/img/logo.png",
-        fields: Fields(thumbnail: "https://hws.dev/img/logo.png"),
-        isHosted: true,
-        pillarID: "pillarId",
-        pillarName: "")
+//    static let example = Article(
+//        id: "This is the id",
+//        type: TypeEnum.article,
+//        sectionID: "This entry is the sectionID",
+//        sectionName: "This is the SectionName",
+//        webPublicationDate: Date(),
+//        webTitle: "The webTitle is very important",
+//        webURL: "https://hws.dev/img/logo.png",
+//        apiURL: "https://hws.dev/img/logo.png",
+//        fields: Fields(thumbnail: "https://hws.dev/img/logo.png"),
+//        isHosted: true,
+//        pillarID: "pillarId",
+//        pillarName: "")
 }
 
 
 
 struct Fields: Codable {
+    let headline: String?
+    let shortURL: String?
     let thumbnail: String // This holds the thumbnail URL
+    let isHosted: Bool?
 }
 
 
-enum PillarID: String, Codable {
-    case pillarArts = "pillar/arts"
-    case pillarNews = "pillar/news"
-}
+//enum PillarID: String, Codable {
+//    case pillarArts = "pillar/arts"
+//    case pillarNews = "pillar/news"
+//}
 
 
-enum PillarName: String, Codable {
-    case arts = "Arts"
-    case news = "News"
-}
+//enum PillarName: String, Codable {
+//    case arts = "Arts"
+//    case news = "News"
+//}
 
 
 enum TypeEnum: String, Codable {
@@ -99,6 +102,6 @@ enum TypeEnum: String, Codable {
 }
 
 
-enum SectionID: String, Codable {
-    case sport = "sport"
-}
+//enum SectionID: String, Codable {
+//    case sport = "sport"
+//}

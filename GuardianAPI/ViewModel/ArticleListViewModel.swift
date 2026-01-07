@@ -44,36 +44,37 @@ extension ContentView {
             
             // set up base url
             let baseUrl = "https://content.guardianapis.com/"
+
+            //MARK: GENERAL NEWS
+            let apiUrlString1 = "\(baseUrl)search?section=world&&format=json&page=1&page-size=40&order-by=newest&lang=en&show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL&api-key=\(apiKey)"
             
-            //set up parameters
-            let searchKeyword = "news" //Cricket%20OR%20Ashes"
-            let dataFormat    = "json"
-            let section       = "sport"
-            let fromDate      = "2025-12-01"
-            let toDate        = "2025-12-30"
-            let page          = 1
-            let pageSize      = 29
-            let orderBy       = "newest"
-            let productionOffice = "uk"
-            let lang          = "en"
             
+            //MARK: CRICKET
             // Search for the latest cricket (Ashes) news - using the fields defined above
-            let apiUrlString = "\(baseUrl)search?q=\(searchKeyword)&format=\(dataFormat)&section=\(section)&from-date=\(fromDate)&to-date=\(toDate)&page=\(page)&page-size=\(pageSize)&order-by=\(orderBy)&production-office=\(productionOffice)&lang=\(lang)&show-fields=thumbnail&api-key=\(apiKey)"
+            let apiUrlString2 = "\(baseUrl)search?q=Cricket&format=json&section=sport&page=1&page-size=40&order-by=newest&lang=en&show-fields=thumbnail&api-key=\(apiKey)"
 
-            // Search for the latest cricket (Ashes) news
-            let apiUrlString2 = "https://content.guardianapis.com/search?q=Cricket%20OR%20Ashes&format=json&section=sport&from-date=2025-12-01&to-date=2025-12-30&page=1&page-size=29&order-by=newest&production-office=uk&lang=en&show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=f9108003-c02d-4f9e-bfc4-3f501a618e6b"
+            //MARK: TENNIS
+            // Search for the latest TENNIS news:
+            let apiUrlString3 = "\(baseUrl)search?q=tennis&format=json&section=sport&page=1&page-size=40&order-by=newest&lang=en&show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=\(apiKey)"
             
-            // Search for the latest news items - any subject
-            let apiUrlString3 = "https://content.guardianapis.com/search?q=news&format=json&page=1&page-size=29&order-by=newest&production-office=uk&lang=en&show-fields=thumbnail&api-key=f9108003-c02d-4f9e-bfc4-3f501a618e6b"
+            //MARK: RUGBY
+            // Search for the latest RUGBY items - any subject.
+            let apiUrlString4 = "\(baseUrl)search?q=rugby&format=json&section=sport&&page=1&page-size=40&order-by=newest&lang=en&show-fields=headline,short-url,thumbnail,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=\(apiKey)"
+            
             
 
+            
             do {
-                let url = URL(string: apiUrlString3)!
-                let session = URLSession(configuration: .ephemeral)
+                let url = URL(string: apiUrlString1)!
+                let session = URLSession(configuration: .default)
                 let (data, _) = try await session.data(from: url)
                 let decoder = JSONDecoder()
                 // If you switch publishedAt to Date in the future:
                 decoder.dateDecodingStrategy = .iso8601
+                
+//                let json = try JSONSerialization.jsonObject(with: data, options: [])
+//                print(json)
+                
                 let decodedResponse = try decoder.decode(GuardianResponse.self, from: data)
                 articles = decodedResponse.response.results
                 loadState = .loaded
@@ -91,7 +92,7 @@ extension ContentView {
 
 //MARK: THE FOLLOWING ARE 5 CATEGORIES AND THEIR SUB-HEADINGS AVAILABLE ON THE GUARDIAN
 /*
- News     : UK,  US politics, World, Climate crisis, Middle East, Ukraine, US Immigration, Soccer, Business, Environment, Tech, Science, Newsletters, Wellness
+ News     : UK,  US politics, World, Climate crisis, Middle East, Ukraine, US Immigration, Soccer, Business, Environment, Tech, Science,    Newsletters, Wellness
  
  Opinion  : The Guardian view, Columnists, Letters, Opinion videos, Cartoons,
  
@@ -113,10 +114,8 @@ extension ContentView {
 
 
 
-//                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-//                    print(json)
-
-
+//let json = try JSONSerialization.jsonObject(with: data, options: [])
+//print(json)
 
 //                } catch let DecodingError.dataCorrupted(context) {
 //                    print("Data corrupted:", context.debugDescription, context.codingPath)
@@ -129,3 +128,19 @@ extension ContentView {
 //                } catch {
 //                    print("Other error:", error)
 //                }
+
+
+
+
+
+//set up parameters
+//            let content       = "Cricket%20OR%20Rugby"
+//            let dataFormat    = "json"
+//            let section       = "sport"
+//            let fromDate      = "2025-12-01"
+//            let toDate        = "2026-01-06"
+//            let page          = 1
+//            let pageSize      = 40
+//            let orderBy       = "newest"
+//            let productionOffice = "uk"
+//            let lang          = "en"
