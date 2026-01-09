@@ -30,24 +30,31 @@ extension ContentView {
                 articles
             } else {
                 articles.filter {
-                    // localizedStandardContains search is locale-aware, case and diacritic insensitive.
-                    $0.webTitle.localizedStandardContains(filterText) }
+                    // "localizedStandardContains" search is locale-aware, case and diacritic insensitive.
+                    $0.webTitle.localizedStandardContains(filterText)
+                }
             }
+        }
+        
+        
+        init() {
+            let temp = StartData.apiURL
+            print(temp[2].url)
         }
         
         
         func loadArticles() async {
             loadState = .loading
             
-            // set up my API Key
-            let apiKey = "f9108003-c02d-4f9e-bfc4-3f501a618e6b"
-            
             // set up base url
             let baseUrl = "https://content.guardianapis.com/"
-
-            //MARK: GENERAL NEWS
-            let apiUrlString1 = "\(baseUrl)search?section=world&&format=json&page=1&page-size=40&order-by=newest&lang=en&show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL&api-key=\(apiKey)"
             
+            // set up my API Key
+            let apiKey = "f9108003-c02d-4f9e-bfc4-3f501a618e6b"
+        
+            
+            //MARK: WORLD NEWS
+            let apiUrlString1 = "\(baseUrl)search?section=world&&format=json&page=1&page-size=40&order-by=newest&lang=en&show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL&api-key=\(apiKey)"
             
             //MARK: CRICKET
             // Search for the latest cricket (Ashes) news - using the fields defined above
@@ -62,16 +69,15 @@ extension ContentView {
             let apiUrlString4 = "\(baseUrl)search?q=rugby&format=json&section=sport&&page=1&page-size=40&order-by=newest&lang=en&show-fields=headline,short-url,thumbnail,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=\(apiKey)"
             
             
-
-            
             do {
-                let url = URL(string: apiUrlString1)!
+                let url = URL(string: apiUrlString4)!
                 let session = URLSession(configuration: .default)
                 let (data, _) = try await session.data(from: url)
                 let decoder = JSONDecoder()
                 // If you switch publishedAt to Date in the future:
                 decoder.dateDecodingStrategy = .iso8601
                 
+                //MARK: following prints the decoded data
 //                let json = try JSONSerialization.jsonObject(with: data, options: [])
 //                print(json)
                 
@@ -86,6 +92,11 @@ extension ContentView {
         }
     }
 }
+
+
+
+
+
 
 
 

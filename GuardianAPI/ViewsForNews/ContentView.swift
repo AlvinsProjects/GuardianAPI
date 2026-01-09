@@ -11,6 +11,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var vm = ArticleListViewModel()
+    var apiUrlString: String
     
     var body: some View {
         NavigationStack {
@@ -20,10 +21,11 @@ struct ContentView: View {
                     
                 default:
                     ArticleRow(vm: vm)
-                        .navigationTitle("Guardian News")
+                        .navigationTitle(apiUrlString)
                         .refreshable {
                             await vm.loadArticles()
                         }
+                    
                         .searchable(text: $vm.filterText,
                                     placement: .automatic,
                                     prompt: "Filter articles")
@@ -33,12 +35,14 @@ struct ContentView: View {
                         }
             }
         }
+        .navigationTitle(Text("KKKKK"))
     }
 }
 
 
 
 #Preview {
-    ContentView()
+//    ContentView(apiUrlString: "hello")
+    ContentView(apiUrlString: "Hello World")
 }
 

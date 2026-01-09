@@ -75,9 +75,12 @@ struct ArticleRow: View {
 }
 
 
-//#Preview {
-//    ArticleRow(vm: vm)
-//}
+
+
+#Preview {
+    // If ArticleListViewModel has a default initializer, this will work:
+    ArticleRow(vm: ContentView.ArticleListViewModel())
+}
 
 
 
