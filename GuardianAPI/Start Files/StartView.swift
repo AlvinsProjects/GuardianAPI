@@ -10,7 +10,7 @@ import SwiftUI
 
 struct StartView: View {
     
-    var category = ["World News", "Cricket", "Tennis", "Rugby", "Olympics", "Politics"]
+    var category = ["World News", "US News", "Cricket", "Tennis", "Rugby", "Olympics"]
     @State private var selectedCategory = "World News"
     
     var body: some View {
@@ -35,7 +35,7 @@ struct StartView: View {
                 }
 
                 Section("Activate Category Selection") {
-                    NavigationLink("Go to \(selectedCategory)", destination: ContentView(apiUrlString: selectedCategory))
+                    NavigationLink("Go to \(selectedCategory)", destination: ContentView(apiUrlCategory: selectedCategory))
                         .foregroundStyle(Color.darkBlue)
                         .padding()
                         .border(Color.darkBlue, width: 1)

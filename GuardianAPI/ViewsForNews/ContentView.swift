@@ -11,19 +11,19 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var vm = ArticleListViewModel()
-    var apiUrlString: String
+    var apiUrlCategory: String
     
     var body: some View {
         NavigationStack {
             switch vm.loadState {
                 case .failed:
-                    LoadFailedView(error: vm.loadError, retry: vm.loadArticles)
+                    LoadFailedView(error: vm.loadError, retry: { await vm.loadArticles(apiUrlStrings: apiUrlCategory) })
                     
                 default:
                     ArticleRow(vm: vm)
-                        .navigationTitle(apiUrlString)
+                        .navigationTitle(apiUrlCategory)
                         .refreshable {
-                            await vm.loadArticles()
+                            await vm.loadArticles(apiUrlStrings: apiUrlCategory)
                         }
                     
                         .searchable(text: $vm.filterText,
@@ -31,7 +31,7 @@ struct ContentView: View {
                                     prompt: "Filter articles")
                     
                         .task {
-                            await vm.loadArticles()
+                            await vm.loadArticles(apiUrlStrings: apiUrlCategory)
                         }
             }
         }
@@ -43,6 +43,6 @@ struct ContentView: View {
 
 #Preview {
 //    ContentView(apiUrlString: "hello")
-    ContentView(apiUrlString: "Hello World")
+    ContentView(apiUrlCategory: "Hello World")
 }
 

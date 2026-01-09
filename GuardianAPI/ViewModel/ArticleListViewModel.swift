@@ -37,40 +37,13 @@ extension ContentView {
         }
         
         
-        init() {
-            let temp = StartData.apiURL
-            print(temp[2].url)
-        }
-        
-        
-        func loadArticles() async {
+        func loadArticles(apiUrlStrings: String) async {
             loadState = .loading
             
-            // set up base url
-            let baseUrl = "https://content.guardianapis.com/"
-            
-            // set up my API Key
-            let apiKey = "f9108003-c02d-4f9e-bfc4-3f501a618e6b"
-        
-            
-            //MARK: WORLD NEWS
-            let apiUrlString1 = "\(baseUrl)search?section=world&&format=json&page=1&page-size=40&order-by=newest&lang=en&show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL&api-key=\(apiKey)"
-            
-            //MARK: CRICKET
-            // Search for the latest cricket (Ashes) news - using the fields defined above
-            let apiUrlString2 = "\(baseUrl)search?q=Cricket&format=json&section=sport&page=1&page-size=40&order-by=newest&lang=en&show-fields=thumbnail&api-key=\(apiKey)"
-
-            //MARK: TENNIS
-            // Search for the latest TENNIS news:
-            let apiUrlString3 = "\(baseUrl)search?q=tennis&format=json&section=sport&page=1&page-size=40&order-by=newest&lang=en&show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=\(apiKey)"
-            
-            //MARK: RUGBY
-            // Search for the latest RUGBY items - any subject.
-            let apiUrlString4 = "\(baseUrl)search?q=rugby&format=json&section=sport&&page=1&page-size=40&order-by=newest&lang=en&show-fields=headline,short-url,thumbnail,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=\(apiKey)"
-            
-            
+            let apiUrlString = getApiUrl(category: apiUrlStrings)
+         
             do {
-                let url = URL(string: apiUrlString4)!
+                let url = URL(string: apiUrlString)!
                 let session = URLSession(configuration: .default)
                 let (data, _) = try await session.data(from: url)
                 let decoder = JSONDecoder()
@@ -88,6 +61,37 @@ extension ContentView {
                 print(error.localizedDescription)
                 loadState = .failed
                 loadError = error
+            }
+        }
+        
+        
+        // get the url for the selected category
+        func getApiUrl(category: String) -> String {
+            
+            let baseUrl = "https://content.guardianapis.com/"   // set up base url
+            let apiKey = "f9108003-c02d-4f9e-bfc4-3f501a618e6b" // set up my API Key
+            
+            switch category {
+                case "World News":
+                    return "\(baseUrl)search?section=world&&format=json&page=1&page-size=40&order-by=newest&lang=en&show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL&api-key=\(apiKey)"
+                
+                case "Cricket":
+                    return "\(baseUrl)search?q=Cricket&format=json&section=sport&page=1&page-size=40&order-by=newest&lang=en&show-fields=thumbnail&api-key=\(apiKey)"
+                
+                case "Tennis":
+                    return "\(baseUrl)search?q=tennis&format=json&section=sport&page=1&page-size=40&order-by=newest&lang=en&show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=\(apiKey)"
+                    
+                case "Rugby":
+                    return "\(baseUrl)search?q=rugby&format=json&section=sport&page=1&page-size=40&order-by=newest&lang=en&show-fields=headline,short-url,thumbnail,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=\(apiKey)"
+                    
+                case "Olympics":
+                    return "\(baseUrl)search?q=olympics&format=json&section=sport&page=1&page-size=40&order-by=newest&lang=en&show-fields=headline,short-url,thumbnail,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=\(apiKey)"
+                    
+                case "US News":
+                    return "\(baseUrl)search?q=us-news&format=json&page=1&page-size=40&order-by=newest&show-fields=headline,short-url,thumbnail,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=\(apiKey)"
+                    
+                default:
+                    return "error"
             }
         }
     }
@@ -155,3 +159,4 @@ extension ContentView {
 //            let orderBy       = "newest"
 //            let productionOffice = "uk"
 //            let lang          = "en"
+
