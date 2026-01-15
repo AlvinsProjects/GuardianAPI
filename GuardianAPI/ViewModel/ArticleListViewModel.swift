@@ -65,30 +65,37 @@ extension ContentView {
         }
         
         
-        // get the url for the selected category
+        
+                // get the url for the selected category
         func getApiUrl(category: String) -> String {
             
-            let baseUrl = "https://content.guardianapis.com/"   // set up base url
-            let apiKey = "f9108003-c02d-4f9e-bfc4-3f501a618e6b" // set up my API Key
+            let baseUrl = "https://content.guardianapis.com/"       // set up base url
+            let apiKey  = "f9108003-c02d-4f9e-bfc4-3f501a618e6b"    // set up my API Key
+            let formatPage = "format=json&page=1&page-size=40&order-by=newest&lang=en"
+            let showFields = "show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL"
+            
             
             switch category {
                 case "World News":
-                    return "\(baseUrl)search?section=world&&format=json&page=1&page-size=40&order-by=newest&lang=en&show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL&api-key=\(apiKey)"
+                    return "\(baseUrl)search?q=news&section=world&\(formatPage)&\(showFields)&api-key=\(apiKey)"
                 
+                case "US News":
+                    return "\(baseUrl)search?q=us&\(formatPage)&\(showFields)&api-key=\(apiKey)"
+                 
+                case "UK News":
+                    return "\(baseUrl)search?section=uk-news&\(formatPage)&\(showFields)&api-key=\(apiKey)"
+                    
                 case "Cricket":
-                    return "\(baseUrl)search?q=Cricket&format=json&section=sport&page=1&page-size=40&order-by=newest&lang=en&show-fields=thumbnail&api-key=\(apiKey)"
-                
+                    return "\(baseUrl)search?q=cricket&section=sport&\(formatPage)&\(showFields)&api-key=\(apiKey)"
+                    
                 case "Tennis":
-                    return "\(baseUrl)search?q=tennis&format=json&section=sport&page=1&page-size=40&order-by=newest&lang=en&show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=\(apiKey)"
+                    return "\(baseUrl)search?q=tennis&section=sport&\(formatPage)&\(showFields)&api-key=\(apiKey)"
                     
                 case "Rugby":
-                    return "\(baseUrl)search?q=rugby&format=json&section=sport&page=1&page-size=40&order-by=newest&lang=en&show-fields=headline,short-url,thumbnail,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=\(apiKey)"
+                    return "\(baseUrl)search?q=rugby&section=sport&\(formatPage)&\(showFields)&api-key=\(apiKey)"
                     
                 case "Olympics":
-                    return "\(baseUrl)search?q=olympics&format=json&section=sport&page=1&page-size=40&order-by=newest&lang=en&show-fields=headline,short-url,thumbnail,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=\(apiKey)"
-                    
-                case "US News":
-                    return "\(baseUrl)search?q=us-news&format=json&page=1&page-size=40&order-by=newest&show-fields=headline,short-url,thumbnail,webPublicationDate,sectionName,webTitle,apiURL,isHosted&api-key=\(apiKey)"
+                    return "\(baseUrl)search?q=olympics&section=sport&\(formatPage)&\(showFields)&api-key=\(apiKey)"
                     
                 default:
                     return "error"

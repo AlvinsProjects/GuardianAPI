@@ -10,7 +10,7 @@ import SwiftUI
 
 struct StartView: View {
     
-    var category = ["World News", "US News", "Cricket", "Tennis", "Rugby", "Olympics"]
+    var category = ["World News", "US News", "UK News", "Cricket", "Tennis", "Rugby", "Olympics"]
     @State private var selectedCategory = "World News"
     
     var body: some View {
@@ -21,7 +21,7 @@ struct StartView: View {
                     Text("This app retrieves news articles from The Guardian API.  The Guardian is a British daily newspaper.\n\nUsers can select a news category from the picker below and then view the top 40 articles in the selected category, sorted by age (newest first).")
                         .font(.system(size: 17, weight: .medium, design: .serif))
                         .italic()
-                        .foregroundStyle(Color.darkBlue)
+//                        .foregroundStyle(Color.darkBlue)
                 }
                 
                 Section("Category Selection") {
@@ -29,20 +29,22 @@ struct StartView: View {
                         ForEach(category, id: \.self)  {
                             Text($0)
                         }
+                        .foregroundStyle(Color.blue)
                     }
                     .pickerStyle(NavigationLinkPickerStyle())
-                    .foregroundStyle(Color.darkBlue)
+//                    .foregroundStyle(Color.darkBlue)
                 }
 
                 Section("Activate Category Selection") {
                     NavigationLink("Go to \(selectedCategory)", destination: ContentView(apiUrlCategory: selectedCategory))
-                        .foregroundStyle(Color.darkBlue)
+                        .foregroundStyle(Color.blue).bold(true)
                         .padding()
-                        .border(Color.darkBlue, width: 1)
+                        .border(Color.blue, width: 1)
                         .background(Color.colLightYellow)
                 }
             }
             .navigationTitle("The Guardian API")
+            .preferredColorScheme(ColorScheme.dark)
         }
     }
 }

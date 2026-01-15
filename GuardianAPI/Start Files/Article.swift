@@ -19,7 +19,7 @@ struct ResponseDetails: Codable {
     var status     : String
     var userTier   : String
     var total      : Int
-    var pageCount  : Int?
+//    var pageCount  : Int?
     var startIndex : Int
     var pageSize   : Int
     var currentPage: Int
@@ -37,8 +37,8 @@ struct Article: Codable {
     var sectionName: String
     var webPublicationDate: Date
     var webTitle: String
-    var webURL: String
-    var apiURL: String
+    var webUrl: String
+    var apiUrl: String
     let fields: Fields
     var isHosted: Bool
     let pillarID: String
@@ -51,27 +51,33 @@ struct Article: Codable {
         case sectionName
         case webPublicationDate
         case webTitle
-        case webURL = "webUrl"
-        case apiURL = "apiUrl"
+        case webUrl //= "webUrl"
+        case apiUrl //= "apiUrl"
         case fields
         case isHosted
         case pillarID = "pillarId"
         case pillarName
     }
     
-//    static let example = Article(
-//        id: "This is the id",
-//        type: TypeEnum.article,
-//        sectionID: "This entry is the sectionID",
-//        sectionName: "This is the SectionName",
-//        webPublicationDate: Date(),
-//        webTitle: "The webTitle is very important",
-//        webURL: "https://hws.dev/img/logo.png",
-//        apiURL: "https://hws.dev/img/logo.png",
-//        fields: Fields(thumbnail: "https://hws.dev/img/logo.png"),
-//        isHosted: true,
-//        pillarID: "pillarId",
-//        pillarName: "")
+    static let example = Article(
+        id: "This is the id",
+        type: TypeEnum.article,
+        sectionID: "This entry is the sectionID",
+        sectionName: "This is the SectionName",
+        webPublicationDate: Date(),
+        webTitle: "The webTitle is very important",
+        webUrl: "https://hws.dev/img/logo.png",
+        apiUrl: "https://hws.dev/img/logo.png",
+        fields: Fields(
+            headline: "Example headline",
+            shortURL: "https://hws.dev/img/logo.png",
+            thumbnail: "https://hws.dev/img/logo.png",
+            isHosted: false
+        ),
+        isHosted: true,
+        pillarID: "pillarId",
+        pillarName: "Example Pillar"
+    )
 }
 
 
@@ -79,21 +85,21 @@ struct Article: Codable {
 struct Fields: Codable {
     let headline: String?
     let shortURL: String?
-    let thumbnail: String // This holds the thumbnail URL
+    let thumbnail: String   // This holds the thumbnail URL
     let isHosted: Bool?
 }
 
 
-//enum PillarID: String, Codable {
-//    case pillarArts = "pillar/arts"
-//    case pillarNews = "pillar/news"
-//}
+enum PillarID: String, Codable {
+    case pillarArts = "pillar/arts"
+    case pillarNews = "pillar/news"
+}
 
 
-//enum PillarName: String, Codable {
-//    case arts = "Arts"
-//    case news = "News"
-//}
+enum PillarName: String, Codable {
+    case arts = "Arts"
+    case news = "News"
+}
 
 
 enum TypeEnum: String, Codable {
@@ -105,3 +111,4 @@ enum TypeEnum: String, Codable {
 //enum SectionID: String, Codable {
 //    case sport = "sport"
 //}
+

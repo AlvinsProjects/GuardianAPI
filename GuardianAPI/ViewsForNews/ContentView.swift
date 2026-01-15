@@ -35,14 +35,14 @@ struct ContentView: View {
                         }
             }
         }
-        .navigationTitle(Text("KKKKK"))
+        .navigationTitle(Text("Error Reading API"))
+        .preferredColorScheme(ColorScheme.dark)
     }
 }
 
 
 
 #Preview {
-//    ContentView(apiUrlString: "hello")
-    ContentView(apiUrlCategory: "Hello World")
+    ContentView(apiUrlCategory: "World News")
 }
 

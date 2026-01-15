@@ -19,7 +19,9 @@ struct LoadFailedView: View {
                 .font(.headline)
         } description: {
             Text("There was an error loading the articles.")
+                .foregroundStyle(.red)
         }
+        
         actions: {
             Button("Retry") {
                 Task {
