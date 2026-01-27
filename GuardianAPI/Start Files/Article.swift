@@ -19,7 +19,7 @@ struct ResponseDetails: Codable {
     var status     : String
     var userTier   : String
     var total      : Int
-//    var pageCount  : Int?
+    var pageCount  : Int?
     var startIndex : Int
     var pageSize   : Int
     var currentPage: Int

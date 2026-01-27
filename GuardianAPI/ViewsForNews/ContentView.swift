@@ -12,7 +12,7 @@ struct ContentView: View {
     
     @State private var vm = ArticleListViewModel()
     var apiUrlCategory: String
-    
+
     var body: some View {
         NavigationStack {
             switch vm.loadState {

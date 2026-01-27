@@ -30,7 +30,9 @@ extension ContentView {
                 articles
             } else {
                 articles.filter {
-                    // "localizedStandardContains" search is locale-aware, case and diacritic insensitive.
+                    /*
+                     "localizedStandardContains" search is locale-aware,
+                     case and diacritic insensitive.  */
                     $0.webTitle.localizedStandardContains(filterText)
                 }
             }
@@ -79,8 +81,8 @@ extension ContentView {
                 case "World News":
                     return "\(baseUrl)search?q=news&section=world&\(formatPage)&\(showFields)&api-key=\(apiKey)"
                 
-                case "US News":
-                    return "\(baseUrl)search?q=us&\(formatPage)&\(showFields)&api-key=\(apiKey)"
+                case "General News":
+                    return "\(baseUrl)search?q=news&\(formatPage)&\(showFields)&api-key=\(apiKey)"
                  
                 case "UK News":
                     return "\(baseUrl)search?section=uk-news&\(formatPage)&\(showFields)&api-key=\(apiKey)"

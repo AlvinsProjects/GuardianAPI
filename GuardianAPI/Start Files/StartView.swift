@@ -10,7 +10,14 @@ import SwiftUI
 
 struct StartView: View {
     
-    var category = ["World News", "US News", "UK News", "Cricket", "Tennis", "Rugby", "Olympics"]
+    var category = ["World News",
+                    "General News",
+                    "UK News",
+                    "Cricket",
+                    "Tennis",
+                    "Rugby",
+                    "Olympics"]
+    
     @State private var selectedCategory = "World News"
     
     var body: some View {
