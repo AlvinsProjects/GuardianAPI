@@ -26,7 +26,8 @@ struct StartView: View {
             Form {
                 Section("Introduction") {
                     Text("This app retrieves news articles from The Guardian API.  The Guardian is a British daily newspaper.\n\nUsers can select a news category from the picker below and then view the top 40 articles in the selected category, sorted by age (newest first).")
-                        .font(.system(size: 17, weight: .medium, design: .serif))
+                        .font(.body.weight(.medium))
+                        .fontDesign(.serif)
                         .italic()
 //                        .foregroundStyle(Color.darkBlue)
                 }
@@ -38,13 +39,13 @@ struct StartView: View {
                         }
                         .foregroundStyle(Color.blue)
                     }
-                    .pickerStyle(NavigationLinkPickerStyle())
+                    .pickerStyle(.navigationLink)
 //                    .foregroundStyle(Color.darkBlue)
                 }
 
                 Section("Activate Category Selection") {
                     NavigationLink("Go to \(selectedCategory)", destination: ContentView(apiUrlCategory: selectedCategory))
-                        .foregroundStyle(Color.blue).bold(true)
+                        .foregroundStyle(Color.blue).bold()
                         .padding()
                         .border(Color.blue, width: 1)
                         .background(Color.colLightYellow)

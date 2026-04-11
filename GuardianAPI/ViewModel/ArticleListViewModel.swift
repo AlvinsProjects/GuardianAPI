@@ -41,11 +41,15 @@ extension ContentView {
         
         func loadArticles(apiUrlStrings: String) async {
             loadState = .loading
-            
-            let apiUrlString = getApiUrl(category: apiUrlStrings)
-         
+
+            guard let urlString = getApiUrl(category: apiUrlStrings),
+                  let url = URL(string: urlString) else {
+                loadState = .failed
+                loadError = FetchError.unknownCategory(apiUrlStrings)
+                return
+            }
+
             do {
-                let url = URL(string: apiUrlString)!
                 let session = URLSession(configuration: .default)
                 let (data, _) = try await session.data(from: url)
                 let decoder = JSONDecoder()
@@ -68,39 +72,49 @@ extension ContentView {
         
         
         
-                // get the url for the selected category
-        func getApiUrl(category: String) -> String {
+        // Returns a Guardian API URL string for the given category, or nil for unknown categories.
+        func getApiUrl(category: String) -> String? {
             
-            let baseUrl = "https://content.guardianapis.com/"       // set up base url
-            let apiKey  = "f9108003-c02d-4f9e-bfc4-3f501a618e6b"    // set up my API Key
+            // TODO: Move apiKey to a git-ignored Secrets.xcconfig and read via Bundle.main.infoDictionary
+            let baseUrl    = "https://content.guardianapis.com/"
+            let apiKey     = "f9108003-c02d-4f9e-bfc4-3f501a618e6b"
             let formatPage = "format=json&page=1&page-size=40&order-by=newest&lang=en"
             let showFields = "show-fields=thumbnail,headline,short-url,webPublicationDate,sectionName,webTitle,apiURL"
-            
-            
+
             switch category {
                 case "World News":
                     return "\(baseUrl)search?q=news&section=world&\(formatPage)&\(showFields)&api-key=\(apiKey)"
-                
+
                 case "General News":
                     return "\(baseUrl)search?q=news&\(formatPage)&\(showFields)&api-key=\(apiKey)"
-                 
+
                 case "UK News":
                     return "\(baseUrl)search?section=uk-news&\(formatPage)&\(showFields)&api-key=\(apiKey)"
-                    
+
                 case "Cricket":
                     return "\(baseUrl)search?q=cricket&section=sport&\(formatPage)&\(showFields)&api-key=\(apiKey)"
-                    
+
                 case "Tennis":
                     return "\(baseUrl)search?q=tennis&section=sport&\(formatPage)&\(showFields)&api-key=\(apiKey)"
-                    
+
                 case "Rugby":
                     return "\(baseUrl)search?q=rugby&section=sport&\(formatPage)&\(showFields)&api-key=\(apiKey)"
-                    
+
                 case "Olympics":
                     return "\(baseUrl)search?q=olympics&section=sport&\(formatPage)&\(showFields)&api-key=\(apiKey)"
-                    
+
                 default:
-                    return "error"
+                    return nil
+            }
+        }
+
+        private enum FetchError: LocalizedError {
+            case unknownCategory(String)
+            var errorDescription: String? {
+                if case .unknownCategory(let cat) = self {
+                    return "Unknown news category: \(cat)"
+                }
+                return nil
             }
         }
     }

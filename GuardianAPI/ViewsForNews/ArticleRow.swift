@@ -18,11 +18,12 @@ struct ArticleRow: View {
         Form {
             // "enumerated" creates a tuple with the offset (index no) and the article
 //            if sizeClass == .compact {
-                ForEach(vm.filteredArticles.enumerated(), id: \.offset) { offset, article in
+                ForEach(vm.filteredArticles.enumerated(), id: \.element.id) { offset, article in
                     VStack(alignment: .leading) {
                         HStack(spacing: 8) {
-                            // load and display the thumbnail
-                            if let thumbURL = URL(string: article.fields.thumbnail) {
+                            // load and display the thumbnail; thumbnail is optional — not all articles include one
+                            if let thumbnail = article.fields.thumbnail,
+                               let thumbURL = URL(string: thumbnail) {
                                 AsyncImage(url: thumbURL) { phase in
                                     switch phase {
                                         case .empty:
@@ -72,7 +73,7 @@ struct ArticleRow: View {
                         }
                         .font(.footnote)
                         .foregroundStyle(.blue)
-                        .bold(true)
+                        .bold()
                     }
                 }
 //            } else {

@@ -30,9 +30,9 @@ struct ResponseDetails: Codable {
 
 
 // MARK: - Result
-struct Article: Codable {
+struct Article: Codable, Identifiable {
     var id: String
-    var type: TypeEnum
+    var type: String
     var sectionID: String
     var sectionName: String
     var webPublicationDate: Date
@@ -61,7 +61,7 @@ struct Article: Codable {
     
     static let example = Article(
         id: "This is the id",
-        type: TypeEnum.article,
+        type: "article",
         sectionID: "This entry is the sectionID",
         sectionName: "This is the SectionName",
         webPublicationDate: Date(),
@@ -85,8 +85,15 @@ struct Article: Codable {
 struct Fields: Codable {
     let headline: String?
     let shortURL: String?
-    let thumbnail: String   // This holds the thumbnail URL
+    let thumbnail: String?      // Not guaranteed by the API; guard at call sites
     let isHosted: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case headline
+        case shortURL = "shortUrl"  // API returns "shortUrl"; Swift property is "shortURL"
+        case thumbnail
+        case isHosted
+    }
 }
 
 
@@ -101,11 +108,6 @@ enum PillarName: String, Codable {
     case news = "News"
 }
 
-
-enum TypeEnum: String, Codable {
-    case article  = "article"
-    case liveblog = "liveblog"
-}
 
 
 //enum SectionID: String, Codable {
