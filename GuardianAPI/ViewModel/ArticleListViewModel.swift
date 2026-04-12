@@ -85,8 +85,8 @@ extension ContentView {
                 case "World News":
                     return "\(baseUrl)search?q=news&section=world&\(formatPage)&\(showFields)&api-key=\(apiKey)"
 
-                case "General News":
-                    return "\(baseUrl)search?q=news&\(formatPage)&\(showFields)&api-key=\(apiKey)"
+                case "US News":
+                    return "\(baseUrl)search?section=us-news&\(formatPage)&\(showFields)&api-key=\(apiKey)"
 
                 case "UK News":
                     return "\(baseUrl)search?section=uk-news&\(formatPage)&\(showFields)&api-key=\(apiKey)"

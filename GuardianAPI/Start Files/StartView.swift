@@ -11,7 +11,7 @@ import SwiftUI
 struct StartView: View {
     
     var category = ["World News",
-                    "General News",
+                    "US News",
                     "UK News",
                     "Cricket",
                     "Tennis",
@@ -29,7 +29,7 @@ struct StartView: View {
                         .font(.body.weight(.medium))
                         .fontDesign(.serif)
                         .italic()
-//                        .foregroundStyle(Color.darkBlue)
+                        .foregroundStyle(Color.accentColor)
                 }
                 
                 Section("Category Selection") {
@@ -40,7 +40,7 @@ struct StartView: View {
                         .foregroundStyle(Color.blue)
                     }
                     .pickerStyle(.navigationLink)
-//                    .foregroundStyle(Color.darkBlue)
+                    .foregroundStyle(Color.yellow)
                 }
 
                 Section("Activate Category Selection") {
