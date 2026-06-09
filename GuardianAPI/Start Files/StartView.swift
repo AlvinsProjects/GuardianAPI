@@ -21,9 +21,10 @@ struct StartView: View {
     var category = ["World News",
                     "US News",
                     "UK News",
+                    "Australia News",
                     "Cricket",
                     "Tennis",
-                    "Rugby",
+                    "Rugby Union",
                     "World Cup 2026"]
 
     @State private var selectedCategory = "World News"

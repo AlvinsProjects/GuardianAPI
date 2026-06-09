@@ -83,25 +83,36 @@ extension ContentView {
 
             switch category {
                 case "World News":
-                    return "\(baseUrl)search?q=news&section=world&\(formatPage)&\(showFields)&api-key=\(apiKey)"
+                    return "\(baseUrl)search?q=news&section=world&" +
+                    "\(formatPage)&\(showFields)&api-key=\(apiKey)"
 
                 case "US News":
-                    return "\(baseUrl)search?section=us-news&\(formatPage)&\(showFields)&api-key=\(apiKey)"
+                    return "\(baseUrl)search?section=us-news&" +
+                    "\(formatPage)&\(showFields)&api-key=\(apiKey)"
 
                 case "UK News":
-                    return "\(baseUrl)search?section=uk-news&\(formatPage)&\(showFields)&api-key=\(apiKey)"
-
+                    return "\(baseUrl)search?section=uk-news&" +
+                    "\(formatPage)&\(showFields)&api-key=\(apiKey)"
+                    
+                case "Australia News":
+                    return "\(baseUrl)search?q=Australia-News&" +
+                    "\(formatPage)&\(showFields)&api-key=\(apiKey)"
+                    
                 case "Cricket":
-                    return "\(baseUrl)search?q=cricket&section=sport&\(formatPage)&\(showFields)&api-key=\(apiKey)"
+                    return "\(baseUrl)search?q=cricket&section=sport&" +
+                    "\(formatPage)&\(showFields)&api-key=\(apiKey)"
 
                 case "Tennis":
-                    return "\(baseUrl)search?q=tennis&section=sport&\(formatPage)&\(showFields)&api-key=\(apiKey)"
+                    return "\(baseUrl)search?q=tennis&section=sport&" +
+                    "\(formatPage)&\(showFields)&api-key=\(apiKey)"
 
-                case "Rugby":
-                    return "\(baseUrl)search?q=rugby&section=sport&\(formatPage)&\(showFields)&api-key=\(apiKey)"
+                case "Rugby Union":
+                    return "\(baseUrl)search?order-by=relevance&q=rugby%20union&" +
+                    "section=sport&\(formatPage)&\(showFields)&api-key=\(apiKey)"
 
                 case "World Cup 2026":
-                    return "\(baseUrl)search?section=football&q=world%20cup%202026&\(formatPage)&\(showFields)&api-key=\(apiKey)"
+                    return "\(baseUrl)search?order-by=relevance&q=world%20cup%202026&" +
+                    "\(formatPage)&\(showFields)&api-key=\(apiKey)"
 
                 default:
                     return nil
