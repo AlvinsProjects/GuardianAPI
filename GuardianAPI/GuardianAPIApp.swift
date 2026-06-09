@@ -14,6 +14,6 @@ struct GuardianAPIApp: App {
 //            ContentView()
             StartView()
         }
-        .preferredColorScheme(.dark)
+//        .preferredColorScheme(.light)
     }
 }

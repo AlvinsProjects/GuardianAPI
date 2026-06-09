@@ -100,8 +100,8 @@ extension ContentView {
                 case "Rugby":
                     return "\(baseUrl)search?q=rugby&section=sport&\(formatPage)&\(showFields)&api-key=\(apiKey)"
 
-                case "Olympics":
-                    return "\(baseUrl)search?q=olympics&section=sport&\(formatPage)&\(showFields)&api-key=\(apiKey)"
+                case "World Cup 2026":
+                    return "\(baseUrl)search?section=football&q=world%20cup%202026&\(formatPage)&\(showFields)&api-key=\(apiKey)"
 
                 default:
                     return nil

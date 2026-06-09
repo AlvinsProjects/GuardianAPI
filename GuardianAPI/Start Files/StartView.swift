@@ -9,15 +9,23 @@ import SwiftUI
 
 
 struct StartView: View {
-    
+
+    private var introFont: Font {
+        #if targetEnvironment(macCatalyst)
+        .title.weight(.medium)
+        #else
+        .body.weight(.medium)
+        #endif
+    }
+
     var category = ["World News",
                     "US News",
                     "UK News",
                     "Cricket",
                     "Tennis",
                     "Rugby",
-                    "Olympics"]
-    
+                    "World Cup 2026"]
+
     @State private var selectedCategory = "World News"
     
     var body: some View {
@@ -26,9 +34,9 @@ struct StartView: View {
             Form {
                 Section("Introduction") {
                     Text("This app retrieves news articles from The Guardian API.  The Guardian is a British daily newspaper.\n\nUsers can select a news category from the picker below and then view the top 40 articles in the selected category, sorted by age (newest first).")
-                        .font(.body.weight(.medium))
-                        .fontDesign(.serif)
-                        .italic()
+                        .font(introFont)
+//                        .fontDesign(.serif)
+//                        .italic()
                         .foregroundStyle(Color.accentColor)
                 }
                 
@@ -37,14 +45,17 @@ struct StartView: View {
                         ForEach(category, id: \.self)  {
                             Text($0)
                         }
+                        .font(introFont)
                         .foregroundStyle(Color.blue)
                     }
                     .pickerStyle(.navigationLink)
-                    .foregroundStyle(Color.yellow)
+                    .font(introFont)
+                    .foregroundStyle(Color.black)
                 }
 
                 Section("Activate Category Selection") {
                     NavigationLink("Go to \(selectedCategory)", destination: ContentView(apiUrlCategory: selectedCategory))
+                        .font(introFont)
                         .foregroundStyle(Color.blue).bold()
                         .padding()
                         .border(Color.blue, width: 1)
@@ -52,7 +63,7 @@ struct StartView: View {
                 }
             }
             .navigationTitle("The Guardian API")
-            .preferredColorScheme(ColorScheme.dark)
+            .preferredColorScheme(ColorScheme.light)
         }
     }
 }
