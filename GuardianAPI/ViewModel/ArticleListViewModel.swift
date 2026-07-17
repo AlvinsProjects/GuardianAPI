@@ -111,8 +111,12 @@ extension ContentView {
                     "section=sport&\(formatPage)&\(showFields)&api-key=\(apiKey)"
 
                 case "World Cup 2026":
-                    return "\(baseUrl)search?order-by=relevance&q=world%20cup%202026&" +
+                    return "\(baseUrl)search?section=football&from-date=2026-06-26&to-date=2026-08-31&q=world-cup-2026" +
                     "\(formatPage)&\(showFields)&api-key=\(apiKey)"
+                    
+                    /*
+                     https://content.guardianapis.com/search?section=football&from-date=2026-06-26&to-date=2026-07-31&q=world-cup-2026
+                    &api-key=f9108003-c02d-4f9e-bfc4-3f501a618e6b */
 
                 default:
                     return nil
