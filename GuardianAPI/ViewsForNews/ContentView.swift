@@ -36,7 +36,6 @@ struct ContentView: View {
             }
         }
         .navigationTitle(Text("Error Reading API"))
-//        .preferredColorScheme(ColorScheme.light)
     }
 }
 

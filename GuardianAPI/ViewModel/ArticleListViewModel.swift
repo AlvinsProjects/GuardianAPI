@@ -115,8 +115,8 @@ extension ContentView {
                     "\(formatPage)&\(showFields)&api-key=\(apiKey)"
                     
                     /*
-                     https://content.guardianapis.com/search?section=football&from-date=2026-06-26&to-date=2026-07-31&q=world-cup-2026
-                    &api-key=f9108003-c02d-4f9e-bfc4-3f501a618e6b */
+                     https://content.guardianapis.com/search?section=football&from-date=2026-06-26&
+                     to-date=2026-07-31&q=world-cup-2026&api-key=f9108003-c02d-4f9e-bfc4-3f501a618e6b */
 
                 default:
                     return nil

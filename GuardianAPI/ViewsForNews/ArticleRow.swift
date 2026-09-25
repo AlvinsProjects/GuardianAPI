@@ -23,7 +23,6 @@ struct ArticleRow: View {
 
     private var sectionFont: Font {
         #if targetEnvironment(macCatalyst)
-//        .headline
         .title3
         #else
         .footnote
@@ -40,7 +39,6 @@ struct ArticleRow: View {
 
     private var metaFont: Font {
         #if targetEnvironment(macCatalyst)
-//        .headline
         .title3
         #else
         .footnote
